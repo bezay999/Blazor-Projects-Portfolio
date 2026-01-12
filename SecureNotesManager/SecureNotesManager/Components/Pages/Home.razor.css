@@ -1,0 +1,40 @@
+.note-card {
+    max-width: 500px;
+    margin: 2rem auto;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    background-color: #f9f9f9;
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+.note-card h2 {
+    margin-bottom: 0.5rem;
+}
+
+.note-card p {
+    margin-bottom: 1.5rem;
+    color: #555;
+}
+
+.note-input {
+    width: 100%;
+    padding: 0.75rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    resize: none;
+}
+
+.button-group button {
+    min-width: 100px;
+}
+
+.result-box {
+    background-color: #e9ecef;
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: left;
+    word-wrap: break-word;
+}

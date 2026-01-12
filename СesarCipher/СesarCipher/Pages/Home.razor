@@ -1,0 +1,62 @@
+@page "/"
+@using СesarCipher.Logic
+
+<PageTitle>Caesar Cipher</PageTitle>
+
+<div class="cipher-container">
+    <div class="cipher-card">
+        <div class="header">
+            <div class="icon-box">
+                <span class="lock-icon">🔐</span>
+            </div>
+            <h1>Caesar Cipher</h1>
+            <p class="subtitle">Secure your message using logic</p>
+        </div>
+
+        <div class="input-section">
+            <label>Enter Message</label>
+            <textarea @bind="cipher.Text" 
+                      class="form-control"
+                      placeholder="Type text to encrypt (e.g. 'hello world')..." 
+                      rows="4"></textarea>
+        </div>
+
+        <div class="actions">
+            <button class="btn-encrypt" @onclick="ExecuteEncrypt">
+                Encrypt
+            </button>
+            <button class="btn-clear" @onclick="ClearAll">
+                Clear
+            </button>
+        </div>
+
+        @if (!string.IsNullOrEmpty(EncryptedResult))
+        {
+            <div class="output-section fade-in">
+                <label>Encrypted Result</label>
+                <div class="result-box">
+                    <span class="code-text">@EncryptedResult</span>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@code {
+    Cipher cipher = new Cipher();
+    string EncryptedResult = "";
+
+    void ExecuteEncrypt()
+    {
+        cipher.Encrypt();
+        EncryptedResult = cipher.GetEncryptedText();
+    }
+
+    void ClearAll()
+    {
+        cipher.Text = string.Empty;
+        EncryptedResult = string.Empty;
+       
+        cipher = new Cipher(); 
+    }
+}

@@ -1,0 +1,73 @@
+@page "/registration"
+@using PasswordStrengthAnalyzer.Logic
+@inject PasswordStrengthAnalyzer.Logic.PasswordChecker PasswordChecker
+
+<PageTitle>Registration</PageTitle>
+
+<div class="registration-container">
+    <div class="registration-card">
+        <h2>Create your account</h2>
+        <p class="subtitle">Please provide your login and password to register</p>
+
+        <label>Login:</label>
+        <input @onchange="InputChanged" placeholder="Enter login" />
+
+        <label>Password:</label>
+        <input class="form-control" 
+               type="password"
+               @bind="PasswordChecker.InputPassword"
+               placeholder="Enter password" />
+
+        <button class="btn btn-primary" @onclick="Check">Check Password Strength</button>
+        <p class="strength-text">Password strength: <span class="@GetStrengthClass()">@passwordLevel</span></p>
+
+        <hr/>
+
+        <h3>Or generate a strong password:</h3>
+        <button class="btn btn-success" @onclick="GeneratePassword">Generate Password</button>
+        @if (!string.IsNullOrEmpty(password))
+        {
+            <p class="generated-password">@password</p>
+        }
+
+        <div class="footer">
+            <p>Already have an account? <a href="/">Login here</a></p>
+        </div>
+    </div>
+</div>
+
+@code {
+    private PasswordLevels passwordLevel = PasswordLevels.Invalid;
+
+    private void Check()
+    {
+        passwordLevel = PasswordChecker.CheckPasswordStrength();
+    }
+
+    string login = "";
+    void InputChanged(ChangeEventArgs e)
+    {
+        login = (string)e.Value;
+    }
+
+    string password = "";
+    void GeneratePassword()
+    {
+        var generator = new CreateStrongPassword();
+        password = generator.StrongPasswordGenerator();
+        generator.ClearPassword();
+    }
+
+    string GetStrengthClass()
+    {
+        return passwordLevel switch
+        {
+            PasswordLevels.Invalid => "strength-invalid",
+            PasswordLevels.Low => "strength-low",
+            PasswordLevels.Medium => "strength-medium",
+            PasswordLevels.Strong => "strength-strong",
+            PasswordLevels.VeryStrong => "strength-verystrong",
+            _ => ""
+        };
+    }
+}}

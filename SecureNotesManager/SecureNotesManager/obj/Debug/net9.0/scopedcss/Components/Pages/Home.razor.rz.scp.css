@@ -1,0 +1,40 @@
+.note-card[b-mnk4zvfc6w] {
+    max-width: 500px;
+    margin: 2rem auto;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    background-color: #f9f9f9;
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+.note-card h2[b-mnk4zvfc6w] {
+    margin-bottom: 0.5rem;
+}
+
+.note-card p[b-mnk4zvfc6w] {
+    margin-bottom: 1.5rem;
+    color: #555;
+}
+
+.note-input[b-mnk4zvfc6w] {
+    width: 100%;
+    padding: 0.75rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    resize: none;
+}
+
+.button-group button[b-mnk4zvfc6w] {
+    min-width: 100px;
+}
+
+.result-box[b-mnk4zvfc6w] {
+    background-color: #e9ecef;
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: left;
+    word-wrap: break-word;
+}
